@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCorp Internship Programs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-title {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .program-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .java-dev { background: linear-gradient(135deg, #48dbfb, #0abde3); }
+        .app-dev { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .python-dev { background: linear-gradient(135deg, #feca57, #ff9ff3); }
+        .web-dev { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+
+        .program-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .program-details {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .program-details li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        .program-details li::before {
+            content: '✓';
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .view-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .view-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .features-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .features-title {
+            font-size: 2.5em;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2em;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+        }
+
+        .application-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .application-title {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .application-desc {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .apply-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 20px;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        .learn-more-btn {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .learn-more-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5em;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .apply-btn, .learn-more-btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape">🚀</div>
+        <div class="shape">💻</div>
+        <div class="shape">⚡</div>
+    </div>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1 class="hero-title">Internship Programs</h1>
+            <p class="hero-subtitle">Launch Your Tech Career with Industry-Leading Experience</p>
+            
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Interns Placed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Job Placement Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.9/5</span>
+                    <span class="stat-label">Program Rating</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="program-icon web-dev">WD</div>
+                <h3 class="program-title">Web Development Internship Program</h3>
+                <ul class="program-details">
+                    <li>Duration: 1 month / 2 months</li>
+                    <li>Location: Virtual</li>
+                    <li>Stipend: Performance-based</li>
+                    <li>Start date: 05/11/2023</li>
+                    <li>Technologies: HTML, CSS, JavaScript, React</li>
+                </ul>
+                <a href="#" class="view-btn" onclick="showDetails('web')">View Details</a>
+            </div>
+
+            <div class="program-card">
+                <div class="program-icon app-dev">AD</div>
+                <h3 class="program-title">App Development Internship Program</h3>
+                <ul class="program-details">
+                    <li>Duration: 1 month / 2 months</li>
+                    <li>Location: Virtual</li>
+                    <li>Stipend: Performance-based</li>
+                    <li>Start date: 05/11/2023</li>
+                    <li>Technologies: Flutter, React Native, Swift</li>
+                </ul>
+                <a href="#" class="view-btn" onclick="showDetails('app')">View Details</a>
+            </div>
+
+            <div class="program-card">
+                <div class="program-icon python-dev">PY</div>
+                <h3 class="program-title">Python Programming Internship Program</h3>
+                <ul class="program-details">
+                    <li>Duration: 1 month / 2 months</li>
+                    <li>Location: Virtual</li>
+                    <li>Stipend: Performance-based</li>
+                    <li>Start date: 05/11/2023</li>
+                    <li>Technologies: Python, Django, Data Science</li>
+                </ul>
+                <a href="#" class="view-btn" onclick="showDetails('python')">View Details</a>
+            </div>
+
+            <div class="program-card">
+                <div class="program-icon java-dev">JP</div>
+                <h3 class="program-title">Job Placement Assistance Program</h3>
+                <ul class="program-details">
+                    <li>Duration: 3 months post-completion</li>
+                    <li>Location: Virtual & On-site</li>
+                    <li>Stipend: Job guarantee or refund</li>
+                    <li>Start date: Immediate after internship</li>
+                    <li>Services: Resume building, Interview prep, Job matching</li>
+                </ul>
+                <a href="#" class="view-btn" onclick="showDetails('placement')">View Details</a>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <h2 class="features-title">Why Choose Our Programs?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Industry-Focused</h3>
+                    <p class="feature-desc">Real projects with cutting-edge technologies used by top companies</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Expert Mentorship</h3>
+                    <p class="feature-desc">Learn from senior developers with years of industry experience</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Career Support</h3>
+                    <p class="feature-desc">Resume building, interview prep, and job placement assistance</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Flexible Learning</h3>
+                    <p class="feature-desc">Remote-friendly programs that fit your schedule</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="application-section">
+            <h2 class="application-title">Ready to Start Your Journey?</h2>
+            <p class="application-desc">Join thousands of successful interns who launched their careers with us. Applications are now open!</p>
+            <a href="#" class="apply-btn" onclick="applyNow()">Apply Now</a>
+            <a href="#" class="learn-more-btn" onclick="learnMore()">Learn More</a>
+        </div>
+    </div>
+
+    <script>
+        function showDetails(program) {
+            const programs = {
+                placement: "Job Placement Assistance Program provides comprehensive career support including resume optimization, interview coaching, portfolio development, and direct connections with hiring partners. We guarantee job placement within 3 months or provide full refund.",
+                web: "Web Development Program focuses on modern front-end and back-end technologies. You'll work on real projects building responsive websites and web applications.",
+                app: "App Development Program covers both native and cross-platform mobile development. Create apps for iOS and Android with modern frameworks.",
+                python: "Python Programming Program includes web development with Django, data science, machine learning, and automation scripting.",
+                statistics: "Our Success Statistics showcase our commitment to excellence: 500+ successful interns placed in top companies, 95% job placement rate within 6 months, 4.9/5 rating from participants, partnerships with 100+ leading companies, and average starting salary of ₹4.5 LPA+."
+            };
+            
+            alert(`${programs[program]}\n\nFor detailed curriculum and application process, please contact our admissions team.`);
+        }
+
+        function applyNow() {
+            alert("Application form will open soon! Please check back or contact us for early registration.");
+        }
+
+        function learnMore() {
+            alert("For more information about our programs, please visit our detailed program pages or contact our counselors.");
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.program-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
